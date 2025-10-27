@@ -36,7 +36,7 @@ jobs:
           uvx pyinstaller --onefile --icon=NONE --name modpack-changelogger-${{github.event.release.tag_name}} modpack_changelogger/__main__.py
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Modpack Changelogger-${{github.event.release.tag_name}}
           path: dist/modpack-changelogger*
