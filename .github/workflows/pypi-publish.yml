@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install uv (official Astral action)
         uses: astral-sh/setup-uv@v7
