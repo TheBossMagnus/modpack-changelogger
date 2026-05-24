@@ -28,7 +28,7 @@ DEFAULT_CONFIG = {
 }
 
 MR_HEADERS = {
-    "User-Agent": f"TheBossMagnus/modpack-changelogger/{VERSION} (thebossmagnus@proton.me)"
+    "User-Agent": f"TheBossMagnus/modpack-changelogger/{VERSION} (thebossmagnus@proton.me)",
 }
 MR_API_URL = "https://api.modrinth.com/v2"
 
@@ -59,7 +59,7 @@ class UnsupportedModpackFormatError(Exception):
     def __init__(self, path):
         self.path = path
         super().__init__(
-            f"The modpack '{path}' is not in a supported format (mrpack or zip). "
+            f"The modpack '{path}' is not in a supported format (mrpack or zip). ",
         )
 
 
@@ -70,7 +70,7 @@ class DifferentModpackFormatError(Exception):
         self.old_format = old_format
         self.new_format = new_format
         super().__init__(
-            f"Both modpacks must be in the same format (old: {old_format}, new: {new_format})."
+            f"Both modpacks must be in the same format (old: {old_format}, new: {new_format}).",
         )
 
 

@@ -50,8 +50,8 @@ def cli(ctx, version, old, new, config, file):
     if not (old and new):
         handle_error(
             RuntimeError(
-                "Both old and new modpacks must be provided for the comparison."
-            )
+                "Both old and new modpacks must be provided for the comparison.",
+            ),
         )
         return
 
@@ -88,7 +88,8 @@ def newconfig():
     try:
         create_config()
         click.secho(
-            "A new configuration file has been created successfully.", fg="green"
+            "A new configuration file has been created successfully.",
+            fg="green",
         )
     except Exception as error:
         handle_error(error, "Unable to create a new configuration file.")

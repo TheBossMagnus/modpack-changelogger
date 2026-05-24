@@ -61,12 +61,24 @@ def generate_changelog(old_path, new_path, config_path, changelog_file):
 
     if changelog_file.lower() == "formatted":
         return markdown_out(
-            added, removed, updated, old_info, new_info, config, None
+            added,
+            removed,
+            updated,
+            old_info,
+            new_info,
+            config,
+            None,
         )  # if changelog_file is None, it will return the markdown text
 
     if changelog_file.lower() == "console":
         print(markdown_out(added, removed, updated, old_info, new_info, config, None))
     else:
         markdown_out(
-            added, removed, updated, old_info, new_info, config, changelog_file
+            added,
+            removed,
+            updated,
+            old_info,
+            new_info,
+            config,
+            changelog_file,
         )

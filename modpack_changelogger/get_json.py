@@ -58,15 +58,18 @@ def get_json(MODPACKS_FORMAT, path):
                 )
         except FileNotFoundError as error:
             raise ModpackFormatError(
-                path, "missing manifest.json or modrinth.index.json"
+                path,
+                "missing manifest.json or modrinth.index.json",
             ) from error
         except json.JSONDecodeError as error:
             raise ModpackFormatError(
-                path, "invalid manifest.json or modrinth.index.json"
+                path,
+                "invalid manifest.json or modrinth.index.json",
             ) from error
         except BadZipFile as error:
             raise ModpackFormatError(
-                path, "corrupted or invalid compression of the mrpack file"
+                path,
+                "corrupted or invalid compression of the mrpack file",
             ) from error
 
 

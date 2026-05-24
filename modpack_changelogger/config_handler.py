@@ -6,7 +6,6 @@ from .utils import DEFAULT_CONFIG, ConfigValidationError
 
 def validate_config(config, default_config):
     """Check if all the fields are present and are of the correct type"""
-
     for key, default_value in default_config.items():
         if key not in config:
             config[key] = default_value
@@ -14,7 +13,7 @@ def validate_config(config, default_config):
             config[key] = validate_config(config.get(key, {}), default_value)
         elif not isinstance(config[key], type(default_value)):
             raise ConfigValidationError(
-                f'Config field "{key}" must be of type {type(default_value).__name__}'
+                f'Config field "{key}" must be of type {type(default_value).__name__}',
             )
     return config
 

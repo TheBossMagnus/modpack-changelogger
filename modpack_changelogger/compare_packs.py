@@ -25,7 +25,7 @@ def compare_packs(
     updated_ids = updated_ids if config["check"]["updated_mods"] else set()
 
     added_mods, removed_mods, updated_mods = asyncio.run(
-        get_mod_names(MODPACKS_FORMAT, added_ids, removed_ids, updated_ids)
+        get_mod_names(MODPACKS_FORMAT, added_ids, removed_ids, updated_ids),
     )
 
     added_mods = sorted(mod for mod in added_mods if mod)

@@ -7,3 +7,5 @@ dist/
 build/
 *.egg-info/
 *.spec
+.pytest_cache/*
+.ruff_cache/*

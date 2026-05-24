@@ -9,7 +9,10 @@ def markdown_out(added, removed, updated, old_info, new_info, config, changelog_
     markdown_text = []
     markdown_text.append(generate_header(old_info, new_info, config))
     markdown_text = available_styles.get(style, bullet_list)(
-        added, removed, updated, markdown_text
+        added,
+        removed,
+        updated,
+        markdown_text,
     )
 
     if changelog_file is None:

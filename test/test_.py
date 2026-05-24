@@ -28,6 +28,7 @@ def test_cf():
     generate_changelog("test/packs/old.zip", "test/packs/new.zip", None, None)
     assert filecmp.cmp("Changelog.md", expected_output, shallow=False)
 
+
 def test_cli():
     expected_output = "test/expected/cli.md"
 
@@ -52,7 +53,7 @@ def test_custom_changelog_file():
 
 def test_formatted():
     expected_output = "test/expected/formatted.md"
-    with open(expected_output, "r", encoding="utf-8") as file:
+    with open(expected_output, encoding="utf-8") as file:
         expected_output = file.read()
 
     assert expected_output == generate_changelog(OLD_PACK, NEW_PACK, None, "formatted")
@@ -61,9 +62,14 @@ def test_formatted():
 def test_unformatted():
     expected_output_file = "test/expected/unformatted.md"
 
-    output1, output2, output3 = generate_changelog(OLD_PACK, NEW_PACK, None, "unformatted")
+    output1, output2, output3 = generate_changelog(
+        OLD_PACK,
+        NEW_PACK,
+        None,
+        "unformatted",
+    )
 
-    with open(expected_output_file, "r", encoding="utf-8") as f:
+    with open(expected_output_file, encoding="utf-8") as f:
         expected1, expected2, expected3 = f.read().split("\n")
 
     assert str(output1) == expected1.strip()
@@ -80,7 +86,7 @@ def test_console():
     sys.stdout = sys.__stdout__
     console_output = console_output.getvalue()
 
-    with open(expected_output_file, "r", encoding="utf-8") as file:
+    with open(expected_output_file, encoding="utf-8") as file:
         expected_output = file.read()
 
     assert expected_output == console_output
@@ -88,18 +94,33 @@ def test_console():
 
 def test_config_new():
     try:
-        result = subprocess.run(["modpack-changelogger", "newconfig"], check=False, stdout=subprocess.PIPE)
+        result = subprocess.run(
+            ["modpack-changelogger", "newconfig"],
+            check=False,
+            stdout=subprocess.PIPE,
+        )
         assert result.returncode == 0
         assert os.path.isfile("config.json")
-        assert result.stdout.decode("utf-8") == f"A new configuration file has been created successfully.{os.linesep}"
+        assert (
+            result.stdout.decode("utf-8")
+            == f"A new configuration file has been created successfully.{os.linesep}"
+        )
     finally:
         os.remove("config.json")
 
 
 def test_version():
 
-    result = subprocess.run(["modpack-changelogger", "-v"], check=False, capture_output=True, text=True)
-    assert re.match(r"Modpack Changelogger \d+\.\d+\.\d+(-\w+)?", result.stdout.strip()) is not None
+    result = subprocess.run(
+        ["modpack-changelogger", "-v"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    assert (
+        re.match(r"Modpack Changelogger \d+\.\d+\.\d+(-\w+)?", result.stdout.strip())
+        is not None
+    )
 
     assert result.returncode == 0
 

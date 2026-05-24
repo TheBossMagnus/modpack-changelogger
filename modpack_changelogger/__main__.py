@@ -1,5 +1,4 @@
-"""
-Main entry point for running Modpack Changelogger as a module.
+"""Main entry point for running Modpack Changelogger as a module.
 
 This allows the package to be imported in other Python scripts.
 """

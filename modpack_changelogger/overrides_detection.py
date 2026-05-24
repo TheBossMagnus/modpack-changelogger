@@ -20,7 +20,7 @@ def add_overrides(MODPACKS_FORMAT, old_overrides, new_overrides, config):
 
     async def get_names_from_hashes(dict1, dict2):
         async with aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=15)
+            timeout=aiohttp.ClientTimeout(total=15),
         ) as session:
             for d in [dict1, dict2]:
                 for file_hash in list(d.keys()):

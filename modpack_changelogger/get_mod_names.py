@@ -8,7 +8,7 @@ from .utils import CF_API_URL, CF_HEADERS, MR_API_URL, MR_HEADERS
 
 async def get_mod_names(MODPACKS_FORMAT, added_ids, removed_ids, updated_ids):
     async with aiohttp.ClientSession(
-        timeout=aiohttp.ClientTimeout(total=15)
+        timeout=aiohttp.ClientTimeout(total=15),
     ) as session:
         api_function = {
             "modrinth": request_from_mr_api,
@@ -45,7 +45,9 @@ async def request_from_cf_api(session, ids):
     url = f"{CF_API_URL}v1/mods"
 
     async with session.post(
-        url, headers=CF_HEADERS, json={"modIds": list(ids)}
+        url,
+        headers=CF_HEADERS,
+        json={"modIds": list(ids)},
     ) as response:
         data = await response.json()
         names = [project["name"] for project in data["data"]]
