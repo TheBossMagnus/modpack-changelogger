@@ -149,6 +149,21 @@ def test_cli_partial_args_returns_usage_error():
     assert "Provide both --old and --new modpacks for comparison" in result.stderr
 
 
+def test_module_entrypoint_version():
+    result = subprocess.run(
+        [sys.executable, "-m", "modpack_changelogger", "--version"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0
+    assert (
+        re.match(r"Modpack Changelogger \d+\.\d+\.\d+(-\w+)?", result.stdout.strip())
+        is not None
+    )
+
+
 def test_check_options():
     config_path = "test/configs/check_options.json"
     expected_output = "test/expected/check_options.md"

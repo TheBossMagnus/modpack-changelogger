@@ -92,5 +92,10 @@ def newconfig():
         handle_error(error, "Unable to create a new configuration file.")
 
 
-if __name__ == "__main__":
+def main():
+    """Entrypoint used by module execution and bundled executables."""
     cli()
+
+
+if __name__ == "__main__":
+    main()
