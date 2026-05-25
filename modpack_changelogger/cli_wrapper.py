@@ -35,11 +35,6 @@ def handle_error(error, message=None):
 @click.pass_context
 def cli(ctx, version, old, new, config, file):
     """CLI wrapper for Modpack Changelogger."""
-    # Show help and exit if no arguments are provided
-    if ctx.invoked_subcommand is None and not any([version, old, new, config, file]):
-        click.echo(ctx.get_help())
-        ctx.exit()
-
     if ctx.invoked_subcommand is not None:
         return
 
@@ -47,13 +42,15 @@ def cli(ctx, version, old, new, config, file):
         click.echo(f"Modpack Changelogger {__version__}")
         return
 
+    # Show help and exit if no arguments are provided
+    if not any([old, new, config, file]):
+        click.echo(ctx.get_help())
+        ctx.exit(0)
+
     if not (old and new):
-        handle_error(
-            RuntimeError(
-                "Both old and new modpacks must be provided for the comparison.",
-            ),
+        raise click.UsageError(
+            "Provide both --old and --new modpacks for comparison",
         )
-        return
 
     try:
         generate_changelog(old, new, config, file)
