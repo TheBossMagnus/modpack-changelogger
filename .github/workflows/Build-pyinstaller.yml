@@ -35,7 +35,7 @@ jobs:
 
       - name: Build with PyInstaller
         run: |
-          uvx pyinstaller --onefile --icon=NONE --name modpack-changelogger-${{ env.sha }} modpack_changelogger/__main__.py
+          uv run pyinstaller --onefile --icon=NONE --name modpack-changelogger-${{ env.sha }} modpack_changelogger/__main__.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
