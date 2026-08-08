@@ -125,6 +125,45 @@ def test_version():
     assert result.returncode == 0
 
 
+def test_cli_no_args_shows_help():
+    result = subprocess.run(
+        ["modpack-changelogger"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0
+    assert "Usage:" in result.stdout
+
+
+def test_cli_partial_args_returns_usage_error():
+    result = subprocess.run(
+        ["modpack-changelogger", "-o", OLD_PACK],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 2
+    assert "Provide both --old and --new modpacks for comparison" in result.stderr
+
+
+def test_module_entrypoint_version():
+    result = subprocess.run(
+        [sys.executable, "-m", "modpack_changelogger", "--version"],
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0
+    assert (
+        re.match(r"Modpack Changelogger \d+\.\d+\.\d+(-\w+)?", result.stdout.strip())
+        is not None
+    )
+
+
 def test_check_options():
     config_path = "test/configs/check_options.json"
     expected_output = "test/expected/check_options.md"
