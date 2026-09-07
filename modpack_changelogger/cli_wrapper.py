@@ -75,21 +75,16 @@ def cli(ctx, version, old, new, config, file):
         ConfigValidationError,
     ) as error:
         handle_error(error, str(error))
-    except Exception as error:
-        handle_error(error, f"Unhandled error: {error!r}")
 
 
 @cli.command(context_settings=CONTEXT_SETTINGS)
 def newconfig():
     """Create a new configuration file."""
-    try:
-        create_config()
-        click.secho(
-            "A new configuration file has been created successfully.",
-            fg="green",
-        )
-    except Exception as error:
-        handle_error(error, "Unable to create a new configuration file.")
+    create_config()
+    click.secho(
+        "A new configuration file has been created successfully.",
+        fg="green",
+    )
 
 
 def main():
