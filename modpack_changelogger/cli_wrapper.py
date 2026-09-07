@@ -14,7 +14,7 @@ from modpack_changelogger.utils import (
 )
 from modpack_changelogger.version import __version__
 
-CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help", "-?"])
+CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help", "-?"]}
 
 
 def handle_error(error, message=None):

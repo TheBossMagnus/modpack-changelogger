@@ -80,6 +80,7 @@ You can also use Modpack Changelogger as a Python module in your own scripts:
 
 ```python
 from modpack_changelogger import generate_changelog
-generate_changelog("old_pack.mrpack","new_pack.mrpack","config.json","output.md")
+
+generate_changelog("old_pack.mrpack", "new_pack.mrpack", "config.json", "output.md")
 ```
 
